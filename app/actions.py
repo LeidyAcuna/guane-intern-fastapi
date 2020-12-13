@@ -1,15 +1,14 @@
 from typing import Any, Dict, Generic, List, Optional, Type, TypeVar, Union
 
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel
+from pydantic import UUID4, BaseModel
 from sqlalchemy.orm import Session
+from datetime import datetime
 
 from . import schemas
 from .db import Base
 from .models import Dog, User
 from . import helpers
-
-from datetime import datetime
 
 
 # Define custom types for SQLAlchemy model, and Pydantic schemas
@@ -41,16 +40,14 @@ class BaseActionsDogs(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
                         self,
                         db: Session, *,
                         obj_in: schemas.DogCreate,
-                        email: str) -> ModelType:
+                        id: UUID4) -> ModelType:
         url_image = helpers.getPicture()
         create_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
-        user = db.query(User).filter(User.email == email).first()
-        user_id = user.id
         dog_obj = schemas.DogInDBBase(
                                         **obj_in.dict(),
                                         picture=url_image,
                                         create_date=create_date,
-                                        user_id=user_id)
+                                        user_id=id)
         obj_in_data = jsonable_encoder(dog_obj)
         db_obj = self.model(**obj_in_data)
         db.add(db_obj)
