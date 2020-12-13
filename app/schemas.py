@@ -6,10 +6,9 @@ from pydantic import UUID4, BaseModel
 class HTTPError(BaseModel):
     detail: str
 
+
 # Dog schema
 # Shared properties
-
-
 class DogBase(BaseModel):
     name: Optional[str] = None
     is_adopted: Optional[bool] = None

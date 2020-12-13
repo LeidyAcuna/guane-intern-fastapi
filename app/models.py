@@ -1,7 +1,7 @@
 from uuid import uuid4
 from sqlalchemy import Column, String, Boolean, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 
 from .db import Base
 
@@ -14,7 +14,7 @@ class User(Base):
     lastname = Column(String)
     email = Column(String, unique=True, index=True)
 
-    dogs = relationship("Dog", back_populates="user")
+    dogs = relationship("Dog", cascade="all,delete")
 
 
 class Dog(Base):
@@ -27,4 +27,4 @@ class Dog(Base):
     is_adopted = Column(Boolean)
     user_id = Column(UUID(as_uuid=True), ForeignKey("user.id"))
 
-    user = relationship("User", back_populates="dogs")
+    user = relationship("User", backref=backref("dogs_user", cascade="all,delete"))

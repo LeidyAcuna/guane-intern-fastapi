@@ -18,14 +18,10 @@ CreateSchemaType = TypeVar("CreateSchemaType", bound=BaseModel)
 UpdateSchemaType = TypeVar("UpdateSchemaType", bound=BaseModel)
 
 
+# CRUD Dogs
 class BaseActionsDogs(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     def __init__(self, model: Type[ModelType]):
-        """Base class that can be extend by other action classes.
-           Provides basic CRUD and listing operations.
 
-        :param model: The SQLAlchemy model
-        :type model: Type[ModelType]
-        """
         self.model = model
 
     def get_all(
@@ -56,7 +52,7 @@ class BaseActionsDogs(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
                                         create_date=create_date,
                                         user_id=user_id)
         obj_in_data = jsonable_encoder(dog_obj)
-        db_obj = self.model(**obj_in_data)  # type: ignore
+        db_obj = self.model(**obj_in_data)
         db.add(db_obj)
         db.commit()
         db.refresh(db_obj)
@@ -91,7 +87,7 @@ class BaseActionsDogs(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
 
 
 class DogActions(BaseActionsDogs[Dog, schemas.DogCreate, schemas.DogUpdate]):
-    """Dogs actions with basic CRUD operations"""
+    """Dogs actions with CRUD operations"""
 
     pass
 
@@ -99,15 +95,10 @@ class DogActions(BaseActionsDogs[Dog, schemas.DogCreate, schemas.DogUpdate]):
 dog = DogActions(Dog)
 
 
-# Actions User
+# CRUD Users
 class BaseActionsUsers(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     def __init__(self, model: Type[ModelType]):
-        """Base class that can be extend by other action classes.
-           Provides basic CRUD and listing operations.
 
-        :param model: The SQLAlchemy model
-        :type model: Type[ModelType]
-        """
         self.model = model
 
     def get_all(
@@ -124,7 +115,7 @@ class BaseActionsUsers(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
                                         lastname=user.lastname,
                                         email=user.email)
         user_data = jsonable_encoder(user_obj)
-        db_obj = self.model(**user_data)  # type: ignore
+        db_obj = self.model(**user_data)
         db.add(db_obj)
         db.commit()
         db.refresh(db_obj)
@@ -159,7 +150,7 @@ class BaseActionsUsers(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
 
 
 class UserActions(BaseActionsUsers[User, schemas.UserCreate, schemas.UserUpdate]):
-    """Users actions with basic CRUD operations"""
+    """Users actions with CRUD operations"""
 
     pass
 

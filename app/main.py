@@ -7,7 +7,6 @@ from . import actions, models, schemas
 from .db import SessionLocal, engine
 
 # Create all tables in database.
-# Comment this out if you using migrations.
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()

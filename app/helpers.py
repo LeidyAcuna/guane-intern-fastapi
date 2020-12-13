@@ -2,6 +2,7 @@ import urllib.request
 import json
 
 
+# Extract picture - Dog
 def getPicture():
     picture = "https://bit.ly/3gDmzHO"
     req = urllib.request.Request('https://dog.ceo/api/breeds/image/random')
