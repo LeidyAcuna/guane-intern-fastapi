@@ -1,6 +1,7 @@
-# API Users and Dogs
+﻿# API Users and Dogs
 
 This API is built with **Python-FastAPI.**
+
 Implement **Docker** and **JWT** for authentication, with a basic CRUD
 for Users and their dogs through the ID relationship in the database, in this case **Postgres.**
 
@@ -26,6 +27,12 @@ This authorization is required for endpoints **POST** and **PUT**:
 ![enter image description here](https://raw.githubusercontent.com/LeidyAcuna/guane-intern-fastapi/dev/images/fastapi-5.png)
 
 ## Run API:
+
+#### Requirements:
+- Python : "^3.8"
+- Docker : https://docs.docker.com/get-docker/
+- Poetry : https://python-poetry.org/docs/#installation
+
 With the cloned project, inside the terminal follow the commands:
 
     - poetry shell
