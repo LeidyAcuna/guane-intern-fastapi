@@ -12,6 +12,9 @@ for Users and their dogs through the ID relationship in the database, in this ca
 
 **Available authorization**
 
+- Username: LeidyAcuna
+- Password: secret
+
 ![enter image description here](https://raw.githubusercontent.com/LeidyAcuna/guane-intern-fastapi/dev/images/fastapi-2.png)
 
 This authorization is required for endpoints **POST** and **PUT**:
