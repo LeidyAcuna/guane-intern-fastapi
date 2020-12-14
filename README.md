@@ -6,6 +6,7 @@ for Users and their dogs through the ID relationship in the database, in this ca
 
 ## Here is a sample:
 **FastAPI** in: http://0.0.0.0/docs
+
 ![enter image description here](https://raw.githubusercontent.com/LeidyAcuna/guane-intern-fastapi/dev/images/fastapi-1.png)
 
 **Available authorization**
