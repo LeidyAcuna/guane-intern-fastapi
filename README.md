@@ -35,6 +35,7 @@ This authorization is required for endpoints **POST** and **PUT**:
 
 With the cloned project, inside the terminal follow the commands:
 
+    - cp .env.example .env
     - poetry shell
     - docker-compose up -d
  
